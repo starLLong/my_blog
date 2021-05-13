@@ -1,4 +1,4 @@
-package blog.mingmomcoco.my_blog;
+package blog.mingmomcoco.myblog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package blog.mingmomcoco.my_blog;
+package blog.mingmomcoco.myblog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
