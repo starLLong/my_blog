@@ -4,6 +4,15 @@ server:
 github:
   client:
     id: "f73b32b1520dcd65f875"
-    secret: "7334da7eafd517067bb5d8715fad97b916463571"
+    secret: "68f14d06cd3bf6d86cb0f18fb13bc3f78e7c2a38"
   redirect:
     url: "http://localhost:8887/callback"
+
+
+#连接池
+spring:
+  datasource:
+    url: jdbc:mysql://longlongaixuexi.mysql.rds.aliyuncs.com:3306/my_blog?characterEncoding=utf8&useSSL=true
+    username: star_long
+    password: balong255664!
+    driver-class-name: com.mysql.jdbc.Driver
