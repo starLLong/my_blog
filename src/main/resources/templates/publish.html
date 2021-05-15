@@ -2,11 +2,12 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>mingmomcoco</title>
+    <title>发布 - 论坛</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" >
+    <link rel="stylesheet" href="css/Ming_publish.css" >
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="js/bootstrap.min.js" type="javascript"></script>
 </head>
@@ -30,7 +31,7 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.user != null}"><a href="/publish">发布</a></li>
+<!--                <li th:if="${session.user != null}"><a href="/publish">发布</a></li>-->
                 <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=f73b32b1520dcd65f875&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a></li>
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -44,6 +45,50 @@
             </ul>
         </div>
     </div>
+    </div>
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题（简单扼要）：</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题__" th:value="${title}">
+                </div>
+                <div class="form-group">
+                    <label for="title">问题补充（必填，请参照右侧提示）：</label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" th:value="${description}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title">添加标签：</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以，号分割" th:value="${tag}">
+                </div>
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${error} != null" th:text="${error}"></div>
+                        <div class=" col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit"
+                                    class="btn btn-success btn_publish">
+                                发布
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            . 1<br>
+            . 2<br>
+            . 3<br>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
