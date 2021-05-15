@@ -22,11 +22,7 @@ public class GithubProvider {
         String code = accessTokenDTO.getCode();
         String redirect_uri = accessTokenDTO.getRedirect_uri();
         String state = accessTokenDTO.getState();
-        String Url = "https://github.com/login/oauth/access_token?client_id="+client_id
-                +"&client_secret="+client_secret
-                +"&code="+code
-                +"&redirect_uri="+redirect_uri
-                +"&state="+state;
+        String Url = "https://github.com/login/oauth/access_token";
 
         RequestBody body = RequestBody.create(mediaType, JSON.toJSONString(accessTokenDTO));
         Request request = new Request.Builder()
@@ -47,7 +43,8 @@ public class GithubProvider {
     public GithubUser getUser(String accessToken){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("https://api.github.com/user?access_token="+accessToken)
+                .url("https://api.github.com/user?")
+                .header("Authorization","token "+accessToken)//请将access_token通过作为Authorization HTTP header中的参数传输，而不是作为url中的参数明文传输
                 .build();
         try (Response response = client.newCall(request).execute()){
 

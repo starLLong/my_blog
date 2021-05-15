@@ -48,8 +48,8 @@ public class AuthorizeController {
 //        此处的accesstoken出现了问题
         String accessToken =  githubProvider.getAccessToken(accessTokenDTO);
 //        https://github.com/login/oauth/access_token
-        GithubUser githubUser = githubProvider.getUser("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    ");
-//        GithubUser USER = githubProvider.getUser(accessToken);
+//        GithubUser githubUser = githubProvider.getUser("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");
+        GithubUser githubUser = githubProvider.getUser(accessToken);
         System.out.println(githubUser);
         if (githubUser != null ){
             User user = new User();
@@ -59,6 +59,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(githubUser.getAvatarUrl());
             userMapper.insert(user);
             //登录成功，写入Cookie 和 Session
             response.addCookie(new Cookie("token",token));

@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" >
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" >
+    <link rel="stylesheet" href="css/Ming_publish.css" >
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="js/bootstrap.min.js" type="javascript"></script>
+    <script src="js/jQuery-3.5.1.js" type="application/javascript"></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -18,7 +20,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Ming momcoco</span>
             </button>
-            <a class="navbar-brand" href="#">Ming momcoco</a>
+            <a class="navbar-brand" href="/">Ming momcoco</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,17 +35,94 @@
                 <li th:if="${session.user != null}"><a href="/publish">发布</a></li>
                 <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=f73b32b1520dcd65f875&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a></li>
                 <li class="dropdown" th:if="${session.user != null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                        <span th:text="${session.user.getName()}"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile/questions">我的问题</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">个人资料</a></li>
+                        <li><a href="#">历史记录</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">退出登录</a></li>
+                    </ul>
+
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
                         <li><a href="#">退出登录</a></li>
-                    </ul>
+                    </ul>-->
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <hr>
+            <div class="media" th:each="question : ${pageNation.questions}">
+                <div class="media-left">
+                    <a href="#">
+<!--                        style="width: 40px;height: 40px"-->
+                        <img class="media-image img-rounded" th:src="${question.user.avatarUrl}" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"></span><br>
+                    <span class="text-desc">
+                        <span th:text="${question.commentCount}"></span> 个回复 ·
+                        <span th:text="${question.viewCount}"></span> 次浏览 ·
+                        <span th:text="${#dates.format(question.gmtCreate,'hh:mm yyyy-MMMM-dd')}"></span>
+                    </span>
+                </div>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li th:if="${pageNation.showFirstPage}">
+                        <a href="/?page=1" aria-label="Previous">
+                            <span aria-hidden="true">&lt;&lt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pageNation.showPrevious}">
+                        <a th:href="@{/(page=${pageNation.page-1})}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page : ${pageNation.pages}" th:class="${pageNation.page == page}? 'active' : ''">
+                        <a  th:href="@{/(page=${page})}" th:text="${page}" ></a>
+                    </li>
+                    <li th:if="${pageNation.showNext}">
+                        <a th:href="@{/(page=${pageNation.page+1})}" aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pageNation.showEndPage}">
+                        <a th:href="@{/(page=${pageNation.totalPage})}" aria-label="Next">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+            . 1<br>
+            . 2<br>
+            . 3<br>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

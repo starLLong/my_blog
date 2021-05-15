@@ -16,3 +16,12 @@ spring:
     username: star_long
     password: balong255664!
     driver-class-name: com.mysql.jdbc.Driver
+
+# 驼峰命名
+mybatis:
+  type-aliases-package: blog.mingmomcoco.myblog.model
+  type-handlers-package: blog.mingmomcoco.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30

@@ -1,9 +1,10 @@
-package blog.mingmomcoco.myblog.model;
+package blog.mingmomcoco.myblog.dto;
 
+import blog.mingmomcoco.myblog.model.User;
 import lombok.Data;
 
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -14,4 +15,5 @@ public class Question {
     private Integer commentCount;
     private Integer viewCount;
     private Integer likeCount;
+    private User user;
 }
