@@ -47,8 +47,6 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
 //        此处的accesstoken出现了问题
         String accessToken =  githubProvider.getAccessToken(accessTokenDTO);
-//        https://github.com/login/oauth/access_token
-//        GithubUser githubUser = githubProvider.getUser("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");
         GithubUser githubUser = githubProvider.getUser(accessToken);
         System.out.println(githubUser);
         if (githubUser != null ){

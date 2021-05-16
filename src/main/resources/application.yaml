@@ -1,12 +1,12 @@
 server:
-  port: 8887
+  port: 80
 
 github:
   client:
     id: "f73b32b1520dcd65f875"
-    secret: "68f14d06cd3bf6d86cb0f18fb13bc3f78e7c2a38"
+    secret: "299267086283a03d8a0c7eff058d113ddcb9570e"
   redirect:
-    url: "http://localhost:8887/callback"
+    url: "http://localhost/callback"
 
 
 #连接池

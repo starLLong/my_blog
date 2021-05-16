@@ -2,7 +2,7 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>mingmomcoco</title>
+    <title th:text="${sectionName}"></title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" >
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
@@ -14,22 +14,22 @@
 </head>
 <body>
 <div th:insert="~{nav :: nav-copy}"></div>
-<div class="container-fluid main">
+<div class="container-fluid main profile">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <h2><span th:text="${sectionName}"></span></h2>
             <hr>
             <div class="media" th:each="question : ${pageNation.questions}">
                 <div class="media-left">
                     <a href="#">
-<!--                        style="width: 40px;height: 40px"-->
+                        <!--                        style="width: 40px;height: 40px"-->
                         <img class="media-image img-rounded" th:src="${question.user.avatarUrl}" alt="...">
                     </a>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${question.title}"></h4>
-                    <span th:text="${question.description}"></span><br>
+<!--                    <span th:text="${question.description}"></span><br>-->
                     <span class="text-desc">
                         <span th:text="${question.commentCount}"></span> 个回复 ·
                         <span th:text="${question.viewCount}"></span> 次浏览 ·
@@ -40,38 +40,46 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="${pageNation.showFirstPage}">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a  th:href="@{'/profile/'+${section}(page=${1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${pageNation.showPrevious}">
-                        <a th:href="@{/(page=${pageNation.page-1})}" aria-label="Previous">
+                        <a th:href="@{'/profile/'+${section}(page=${pageNation.page-1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
                     <li th:each="page : ${pageNation.pages}" th:class="${pageNation.page == page}? 'active' : ''">
-                        <a  th:href="@{/(page=${page})}" th:text="${page}" ></a>
+                        <a  th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}" ></a>
                     </li>
                     <li th:if="${pageNation.showNext}">
-                        <a th:href="@{/(page=${pageNation.page+1})}" aria-label="Next">
+                        <a th:href="@{'/profile/'+${section}(page=${pageNation.page+1})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="${pageNation.showEndPage}">
-                        <a th:href="@{/(page=${pageNation.totalPage})}" aria-label="Next">
+                        <a th:href="@{'/profile/'+${section}(page=${pageNation.totalPage})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>热门话题</h3>
-            . 1<br>
-            . 2<br>
-            . 3<br>
-
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="list-group section">
+                <a href="/profile/questions" th:class="${section == 'questions'}? 'list-group-item  active' : 'list-group-item'">
+                    <span class="badge">9</span>
+                    我的问题
+                </a>
+                <a href="/profile/replies"  th:class="${section == 'replies'}? 'list-group-item active' : 'list-group-item'">
+                    <span class="badge">14</span>
+                    最新回复
+                </a>
+                <!--<a href="#" class="list-group-item" th:class="${section == replies}? 'active' : ''">我的关注</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>-->
+            </div>
         </div>
     </div>
 </div>

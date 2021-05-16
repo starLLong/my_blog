@@ -19,26 +19,26 @@ public class PageDTO {
 
 
 
-    public void setPageNation(Integer totalCount, Integer page, Integer size) {
+    public void setPageNation(Integer totalPage, Integer page) {
+        this.totalPage=totalPage;
+//        if (totalCount % size == 0 ){
+//            totalPage = totalCount / size;
+//
+//        }else {
+//            totalPage = totalCount / size + 1;
+//        }
 
-        if (totalCount % size == 0 ){
-            totalPage = totalCount / size;
-
-        }else {
-            totalPage = totalCount / size + 1;
-        }
-
-        if (page<1){
-            page = 1;
-        }
-        if (page>totalPage){
-            page = totalPage;
-        }
+//        if (page<1){
+//            page = 1;
+//        }
+//        if (page>totalPage){
+//            page = totalPage;
+//        }
 
 
         this.page = page;
         pages.add(page);
-        for (int i = 1 ;i<3;i++){
+        for (int i = 1 ;i<4;i++){
             if (page-i>0){
                 pages.add(0,page-i);
             }
