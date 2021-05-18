@@ -5,6 +5,7 @@ import blog.mingmomcoco.myblog.dto.GithubUser;
 import blog.mingmomcoco.myblog.mapper.UserMapper;
 import blog.mingmomcoco.myblog.model.User;
 import blog.mingmomcoco.myblog.provider.GithubProvider;
+import blog.mingmomcoco.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class AuthorizeController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code")String code,
                            @RequestParam(name = "state")String state,
@@ -55,10 +59,9 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUser.getAvatarUrl());
-            userMapper.insert(user);
+//            userMapper.insert(user);
+            userService.createOrUpdate(user);
             //登录成功，写入Cookie 和 Session
             response.addCookie(new Cookie("token",token));
 //            request.getSession().setAttribute("user",githubUser);
@@ -69,5 +72,15 @@ public class AuthorizeController {
             return "redirect:/";
 
         }
+    }
+    @GetMapping("/loginout")
+    public String loginout(HttpServletRequest request,
+                           HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
+
     }
 }

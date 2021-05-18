@@ -105,4 +105,18 @@ public class QuestionServiceImpl implements QuestionService {
         questionDTO.setUser(user);
         return questionDTO;
     }
+
+    @Override
+    public void createOrUpdate(Question question) {
+        if (question.getId() == null){
+            //创建
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+            questionMapper.create(question);
+        }else {
+            //编辑
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.update(question);
+        }
+    }
 }

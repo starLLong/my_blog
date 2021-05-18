@@ -13,3 +13,5 @@ https://mvnrepository.com/
 
 https://my.oschina.net/u/4321538/blog/4716662
 
+mvn -Dmybatis.generator.overwrite = true mybatis-generator：generate
+
