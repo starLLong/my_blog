@@ -1,7 +1,6 @@
 package blog.mingmomcoco.myblog.controller;
 
 import blog.mingmomcoco.myblog.dto.QuestionDTO;
-import blog.mingmomcoco.myblog.mapper.QuestionMapper;
 import blog.mingmomcoco.myblog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

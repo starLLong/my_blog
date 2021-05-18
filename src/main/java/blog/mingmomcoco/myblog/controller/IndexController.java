@@ -3,7 +3,7 @@ package blog.mingmomcoco.myblog.controller;
 import blog.mingmomcoco.myblog.dto.PageDTO;
 import blog.mingmomcoco.myblog.dto.QuestionDTO;
 import blog.mingmomcoco.myblog.mapper.QuestionMapper;
-import blog.mingmomcoco.myblog.mapper.UserMapper;
+import blog.mingmomcoco.myblog.dao.UserMapper;
 import blog.mingmomcoco.myblog.model.Question;
 import blog.mingmomcoco.myblog.model.User;
 import blog.mingmomcoco.myblog.service.QuestionService;

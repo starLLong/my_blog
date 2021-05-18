@@ -1,6 +1,6 @@
 package blog.mingmomcoco.myblog.dto;
 
-import blog.mingmomcoco.myblog.model.User;
+import blog.mingmomcoco.myblog.entity.User;
 import lombok.Data;
 
 @Data

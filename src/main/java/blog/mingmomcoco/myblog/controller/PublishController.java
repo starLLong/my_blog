@@ -3,8 +3,8 @@ package blog.mingmomcoco.myblog.controller;
 
 import blog.mingmomcoco.myblog.dto.QuestionDTO;
 import blog.mingmomcoco.myblog.mapper.QuestionMapper;
-import blog.mingmomcoco.myblog.model.Question;
-import blog.mingmomcoco.myblog.model.User;
+import blog.mingmomcoco.myblog.entity.Question;
+import blog.mingmomcoco.myblog.entity.User;
 import blog.mingmomcoco.myblog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

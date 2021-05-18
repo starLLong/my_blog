@@ -19,9 +19,10 @@ spring:
 
 # 驼峰命名
 mybatis:
-  type-aliases-package: blog.mingmomcoco.myblog.model
+  type-aliases-package: blog.mingmomcoco.myblog.entity
   type-handlers-package: blog.mingmomcoco.typehandler
   configuration:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 30
+  mapper-locations: classpath:mapper/*.xml

@@ -1,8 +1,8 @@
 package blog.mingmomcoco.myblog.controller;
 
 import blog.mingmomcoco.myblog.dto.PageDTO;
-import blog.mingmomcoco.myblog.mapper.UserMapper;
-import blog.mingmomcoco.myblog.model.User;
+import blog.mingmomcoco.myblog.dao.UserMapper;
+import blog.mingmomcoco.myblog.entity.User;
 import blog.mingmomcoco.myblog.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

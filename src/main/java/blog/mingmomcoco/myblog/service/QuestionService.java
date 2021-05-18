@@ -2,7 +2,7 @@ package blog.mingmomcoco.myblog.service;
 
 import blog.mingmomcoco.myblog.dto.PageDTO;
 import blog.mingmomcoco.myblog.dto.QuestionDTO;
-import blog.mingmomcoco.myblog.model.Question;
+import blog.mingmomcoco.myblog.entity.Question;
 import org.springframework.stereotype.Service;
 
 @Service

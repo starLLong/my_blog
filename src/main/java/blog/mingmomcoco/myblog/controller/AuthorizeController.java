@@ -2,8 +2,8 @@ package blog.mingmomcoco.myblog.controller;
 
 import blog.mingmomcoco.myblog.dto.AccessTokenDTO;
 import blog.mingmomcoco.myblog.dto.GithubUser;
-import blog.mingmomcoco.myblog.mapper.UserMapper;
-import blog.mingmomcoco.myblog.model.User;
+import blog.mingmomcoco.myblog.dao.UserMapper;
+import blog.mingmomcoco.myblog.entity.User;
 import blog.mingmomcoco.myblog.provider.GithubProvider;
 import blog.mingmomcoco.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
