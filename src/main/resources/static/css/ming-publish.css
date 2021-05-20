@@ -30,3 +30,6 @@ body {
 .image-name{
     color: cornflowerblue;
 }
+.error-bottom {
+    margin-bottom: 0px
+}

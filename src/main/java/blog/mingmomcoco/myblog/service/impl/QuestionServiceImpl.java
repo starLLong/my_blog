@@ -7,6 +7,7 @@ import blog.mingmomcoco.myblog.dao.UserMapper;
 import blog.mingmomcoco.myblog.entity.Question;
 import blog.mingmomcoco.myblog.entity.QuestionExample;
 import blog.mingmomcoco.myblog.entity.User;
+import blog.mingmomcoco.myblog.exception.CustomizeException;
 import blog.mingmomcoco.myblog.service.QuestionService;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
@@ -117,6 +118,9 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionDTO getById(Integer id) {
 //        Question question = questionMapper.getById(id);
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null){
+            throw new CustomizeException("你找的问题不在了，要不要换个试试？？？");
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
